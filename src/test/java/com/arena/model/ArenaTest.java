@@ -55,7 +55,10 @@ public class ArenaTest {
 
     @Test
     public void test_warrior_with_posionous_sword_fight_with_ordinaryPerson(){
-        Warrior warrior = new Warrior("张三", 8, 20, new Weapon("优质毒剑", 3), new NoDefense());
+        Warrior warrior = new Warrior("张三", 8, 20);
+        Weapon weapon = new Weapon("优质毒剑",3);
+        weapon.setWeaponCharacter(new PoisonousWeaponCharacter(2));
+        warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
         InOrder inOrder = inOrder(printer);
@@ -63,10 +66,28 @@ public class ArenaTest {
 
         arena.start();
 
-        inOrder.verify(printer).printToConsol("战士张三用优质毒剑攻击了普通人李四,李四受到了11点伤害,李四中毒了,李四剩余生命：9.0");
-        inOrder.verify(printer).printToConsol("李四受到2点毒性伤害, 李四剩余生命：7.0");
-        inOrder.verify(printer).printToConsol("普通人李四攻击了战士张三,张三受到了3点伤害,张三剩余生命：17.0");
-        inOrder.verify(printer).printToConsol("战士张三用优质毒剑攻击了普通人李四,李四受到了11点伤害,李四中毒了,李四剩余生命：-4.0");
+        inOrder.verify(printer).printToConsol("战士张三用优质毒剑攻击了普通人李四,李四受到了11.0点伤害,李四中毒了,李四剩余生命:7.0");
+        inOrder.verify(printer).printToConsol("李四受到2.0点毒性伤害,李四剩余生命:5.0\n普通人李四攻击了战士张三,张三受到了3.0点伤害,张三剩余生命:17.0");
+        inOrder.verify(printer).printToConsol("战士张三用优质毒剑攻击了普通人李四,李四受到了11.0点伤害,李四中毒了,李四剩余生命:-6.0");
+        inOrder.verify(printer).printToConsol("李四被打败了");
+    }
+
+    @Test
+    public void test_warrior_with_dizzy_sword_fight_with_ordinaryPerson(){
+        Warrior warrior = new Warrior("张三", 8, 20);
+        Weapon weapon = new Weapon("晕锤",3);
+        weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+        warrior.setWeapon(weapon);
+        OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
+        arena = new Arena(warrior,ordinaryPerson);
+        InOrder inOrder = inOrder(printer);
+        arena.setPrinter(printer);
+
+        arena.start();
+
+        inOrder.verify(printer).printToConsol("战士张三用晕锤攻击了普通人李四,李四受到了11.0点伤害,李四晕倒了,李四剩余生命:7.0");
+        inOrder.verify(printer).printToConsol("李四晕倒了,无法攻击,眩晕还剩:1轮");
+        inOrder.verify(printer).printToConsol("战士张三用晕锤攻击了普通人李四,李四受到了11.0点伤害,李四晕倒了,李四剩余生命:-4.0");
         inOrder.verify(printer).printToConsol("李四被打败了");
     }
 

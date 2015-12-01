@@ -4,28 +4,16 @@ package com.arena.model;
  * Created by jason on 15-11-30.
  */
 public class Status {
-    private String statusCode;
-    private String statusDescirbe;
+    private int roundTimes;
     private WeaponCharacter weaponCharacter;
-    public Status(String statusCode, String statusDescirbe) {
-        this.statusCode = statusCode;
-        this.statusDescirbe = statusDescirbe;
+
+    public Status(WeaponCharacter weaponCharacter) {
+        this.weaponCharacter = weaponCharacter;
     }
 
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getStatusDescirbe() {
-        return statusDescirbe;
-    }
-
-    public void setStatusDescirbe(String statusDescirbe) {
-        this.statusDescirbe = statusDescirbe;
+    public Status(int roundTimes, WeaponCharacter weaponCharacter) {
+        this.roundTimes = roundTimes;
+        this.weaponCharacter = weaponCharacter;
     }
 
     public WeaponCharacter getWeaponCharacter() {
@@ -34,5 +22,17 @@ public class Status {
 
     public void setWeaponCharacter(WeaponCharacter weaponCharacter) {
         this.weaponCharacter = weaponCharacter;
+    }
+
+    public int getRoundTimes() {
+        return roundTimes;
+    }
+
+    public void setRoundTimes(int roundTimes) {
+        this.roundTimes = roundTimes;
+    }
+
+    public String getDescrib() {
+        return weaponCharacter.getStatusDescrib()+"了";
     }
 }

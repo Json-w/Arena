@@ -26,10 +26,19 @@ public class Warrior extends Player {
 
     @Override
     public String attack(Player atkedPlayer) {
-        if ("".equals(weapon.getName())) {
-            return String.format("%s%s攻击了%s%s", roleName, name, atkedPlayer.getRoleName(), atkedPlayer.getName());
+        String result = "";
+        if (status != null) {
+            if (status.getWeaponCharacter() instanceof DizzyWeaponCharactor) {
+                return status.getWeaponCharacter().characterAttack(this);
+            }
+            result = status.getWeaponCharacter().characterAttack(this) + "/n";
         }
-        return String.format("%s%s用%s攻击了%s%s", roleName, name, weapon.getName(), atkedPlayer.getRoleName(), atkedPlayer.getName());
+        if ("".equals(weapon.getName())) {
+            result += String.format("%s%s攻击了%s%s", roleName, name, atkedPlayer.getRoleName(), atkedPlayer.getName());
+        } else {
+            result += String.format("%s%s用%s攻击了%s%s", roleName, name, weapon.getName(), atkedPlayer.getRoleName(), atkedPlayer.getName());
+        }
+        return result;
     }
 
     @Override
@@ -38,9 +47,24 @@ public class Warrior extends Player {
     }
 
     @Override
-    public String beAttacked(double damage) {
-        blood -= (damage - defense.getAc());
-        return String.format("%s受到了%s点伤害,%s剩余生命:%s", name, damage - defense.getAc(), name, blood);
+    public Attack getAttack() {
+        return new Attack(getAtk(), weapon.getWeaponCharacter());
+    }
+
+
+    @Override
+    public String beAttacked(Player player) {
+        if (player.getStatus() != null && !player.getStatus().getWeaponCharacter().ifAttack()) {
+            return "";
+        }
+        blood -= (player.getAttack().getNormalAtk() - defense.getAc());
+        if (player.getAttack().getWeaponCharacter() != null) {
+            setStatus(new Status(player.getAttack().getWeaponCharacter()));
+        }
+        if (status != null) {
+            return String.format(",%s受到了%s点伤害,%s,%s剩余生命:%s", name, player.getAttack().getNormalAtk() - defense.getAc(), name + status.getDescrib(), name, blood);
+        }
+        return String.format(",%s受到了%s点伤害,%s剩余生命:%s", name, player.getAttack().getNormalAtk() - defense.getAc(), name, blood);
     }
 
     public Defense getDefense() {

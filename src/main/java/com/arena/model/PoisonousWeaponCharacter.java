@@ -4,15 +4,36 @@ package com.arena.model;
  * Created by jason on 15-11-30.
  */
 public class PoisonousWeaponCharacter implements WeaponCharacter{
-    private Status status;
+    private double characterAtk;
 
-    public PoisonousWeaponCharacter() {
-        status = new Status("01","中毒");
+    public PoisonousWeaponCharacter(double characterAtk) {
+        this.characterAtk = characterAtk;
     }
 
     @Override
-    public String damagePlayer(Player player) {
-        player.setStatus(status);
-        return String.format("%s中毒了",player.getName());
+    public String getStatusDescrib() {
+        return "中毒";
     }
+
+    @Override
+    public String characterAttack(Player player) {
+        player.setBlood(player.getBlood()-characterAtk);
+        return String.format("%s受到%s点毒性伤害,李四剩余生命:%s",player.getName(),characterAtk,player.getBlood());
+    }
+
+    @Override
+    public int getRoundTimes() {
+        return 0;
+    }
+
+    @Override
+    public void setRoundTimes(int roundTimes) {
+
+    }
+
+    @Override
+    public boolean ifAttack() {
+        return true;
+    }
+
 }

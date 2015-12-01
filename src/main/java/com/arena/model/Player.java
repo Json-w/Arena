@@ -37,30 +37,31 @@ public abstract class Player {
         return atk;
     }
 
+    public abstract Attack getAttack();
+
     public double getBlood() {
         return blood;
     }
 
     public String attack(Player atkedPlayer) {
-        if(null != status){
-            if(status.getStatusCode().equals("01")){
-
-            }
+        if (status != null) {
+            return status.getWeaponCharacter().characterAttack(this) + "\n" + String.format("%s攻击了%s", name, atkedPlayer.getName());
+        } else {
+            return String.format("%s攻击了%s", name, atkedPlayer.getName());
         }
-        return String.format("%s攻击了%s", name, atkedPlayer.getName());
     }
 
     public boolean isAlive() {
         return blood > 0;
     }
 
-    public String beAttacked(double damage) {
-        blood -= damage;
-        return String.format("%s受到了%s点伤害,%s剩余生命:%s", name, damage, name, blood);
-    }
-
+    public abstract String beAttacked(Player player);
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }
