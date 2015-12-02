@@ -1,24 +1,18 @@
 package com.arena.model;
 
 /**
- * Created by jason on 15-11-30.
+ * Created by jason on 15-12-2.
  */
-public class PoisonousWeaponCharacter implements WeaponCharacter{
-    private double characterAtk;
-
-    public PoisonousWeaponCharacter(double characterAtk) {
-        this.characterAtk = characterAtk;
-    }
+public class FullStrengthWeaponCharacter implements WeaponCharacter{
 
     @Override
     public String getStatusDescrib() {
-        return "中毒了";
+        return "发动了全力一击";
     }
 
     @Override
     public String characterAttack(Player player) {
-        player.setBlood(player.getBlood()-characterAtk);
-        return String.format("%s受到%s点毒性伤害,李四剩余生命:%s",player.getName(),characterAtk,player.getBlood());
+        return "";
     }
 
     @Override
@@ -40,5 +34,4 @@ public class PoisonousWeaponCharacter implements WeaponCharacter{
     public boolean ifAttack() {
         return true;
     }
-
 }

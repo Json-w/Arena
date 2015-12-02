@@ -24,24 +24,41 @@ public class OrdinaryPerson extends Player {
     public String attack(Player atkedPlayer) {
         String result = "";
         if (status != null) {
-            if(status.getWeaponCharacter() instanceof DizzyWeaponCharactor){
-                return status.getWeaponCharacter().characterAttack(this);
+            String characterAttackResult =  status.getWeaponCharacter().characterAttack(this);
+            if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候
+                return status.getWeaponCharacter().shouldInjuredPersonLike(this);
+            } else {
+                if(!characterAttackResult.equals("")){
+                    result += characterAttackResult+ "\n";
+                }
             }
-            result += status.getWeaponCharacter().characterAttack(this)+"\n";
         }
         result += String.format("%s%s攻击了%s%s", roleName, name, atkedPlayer.getRoleName(), atkedPlayer.getName());
+        result += atkedPlayer.beAttacked(this);
         return result;
     }
 
     @Override
     public String beAttacked(Player player) {
-        blood -= player.getAttack().getNormalAtk();
+//        if (player.getStatus() != null && !player.getStatus().getWeaponCharacter().ifAttack()) {
+//            return "";
+//        }
+        double atkedBlood = 0;
+        atkedBlood = (player.getAttack().getNormalAtk());
         if (player.getAttack().getWeaponCharacter() != null) {
             setStatus(new Status(player.getAttack().getWeaponCharacter()));
+            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
+                atkedBlood = atkedBlood *3;
+            }
         }
+        blood -=atkedBlood;
+
         if (status != null) {
-            return String.format(",%s受到了%s点伤害,%s,%s剩余生命:%s", name, player.getAtk(), name + status.getDescrib(), name, blood);
+            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
+                return String.format(",%s,%s受到了%s点伤害,%s剩余生命:%s", player.getName() + status.getDescrib(),name, atkedBlood, name, blood);
+            }
+            return String.format(",%s受到了%s点伤害,%s,%s剩余生命:%s", name, atkedBlood, name + status.getDescrib(), name, blood);
         }
-        return String.format(",%s受到了%s点伤害,%s剩余生命:%s", name, player.getAtk(), name, blood);
+        return String.format(",%s受到了%s点伤害,%s剩余生命:%s", name, atkedBlood, name, blood);
     }
 }

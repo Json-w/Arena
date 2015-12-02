@@ -16,11 +16,8 @@ public class OrdinaryPersonTest {
         OrdinaryPerson ordinaryPersonB = new OrdinaryPerson("李四",3,12);
 
         String attackResult = ordinaryPersonA.attack(ordinaryPersonB);
-        String beAttackedResult = ordinaryPersonA.beAttacked(ordinaryPersonB);
-
-        assertThat(attackResult,is("普通人张三攻击了普通人李四"));
-        assertThat(ordinaryPersonA.getBlood(),is(7.0));
-        assertThat(beAttackedResult,is(",张三受到了3.0点伤害,张三剩余生命:7.0"));
+        assertThat(attackResult,is("普通人张三攻击了普通人李四,李四受到了5.0点伤害,李四剩余生命:7.0"));
+        assertThat(ordinaryPersonB.getBlood(),is(7.0));
     }
 
     @Test
@@ -29,10 +26,8 @@ public class OrdinaryPersonTest {
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",10,40);
 
         String attackResult = warrior.attack(ordinaryPerson);
-        String beAttackedResult = ordinaryPerson.beAttacked(warrior);
 
-        assertThat(attackResult,is("战士张三用倚天剑攻击了普通人李四"));
+        assertThat(attackResult,is("战士张三用倚天剑攻击了普通人李四,李四受到了20.0点伤害,李四剩余生命:20.0"));
         assertThat(ordinaryPerson.getBlood(),is(20.0));
-        assertThat(beAttackedResult,is(",李四受到了20.0点伤害,李四剩余生命:20.0"));
     }
 }

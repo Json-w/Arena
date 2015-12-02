@@ -19,10 +19,10 @@ public class Arena {
     public void start() {
         while (true) {
             if (playerA.isAlive()) {
-                printer.printToConsol( playerA.attack(playerB)+playerB.beAttacked(playerA));
+                printer.printToConsol( playerA.attack(playerB));
             }
             if (playerB.isAlive()) {
-                printer.printToConsol( playerB.attack(playerA)+playerA.beAttacked(playerB));
+                printer.printToConsol( playerB.attack(playerA));
             }
             if (!playerB.isAlive()) {
                 setWinner(playerA);

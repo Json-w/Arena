@@ -30,12 +30,10 @@ public class WarriorTest {
         Warrior warriorA = new Warrior("王五", 12, 38);
         Warrior warriorB = new Warrior("李四", 10, 40);
 
-        String beAttackedResult = warriorA.beAttacked(warriorB);
         String attackResult = warriorA.attack(warriorB);
 
-        assertThat(beAttackedResult, is(",王五受到了10.0点伤害,王五剩余生命:28.0"));
-        assertThat(warriorA.getBlood(), is(28.0));
-        assertThat(attackResult, is("战士王五攻击了战士李四"));
+        assertThat(warriorB.getBlood(), is(28.0));
+        assertThat(attackResult, is("战士王五攻击了战士李四,李四受到了12.0点伤害,李四剩余生命:28.0"));
     }
 
     @Test
@@ -45,12 +43,10 @@ public class WarriorTest {
         warriorA.setWeapon(new Weapon("屠龙刀", 5));
         warriorA.setDefense(new Defense("金丝软甲", 7));
 
-        String beAttackedResult = warriorA.beAttacked(warriorB);
         String attackResult = warriorA.attack(warriorB);
 
-        assertThat(beAttackedResult, is(",王五受到了3.0点伤害,王五剩余生命:35.0"));
-        assertThat(warriorA.getBlood(), is(35.0));
-        assertThat(attackResult, is("战士王五用屠龙刀攻击了战士李四"));
+        assertThat(warriorB.getBlood(), is(23.0));
+        assertThat(attackResult, is("战士王五用屠龙刀攻击了战士李四,李四受到了17.0点伤害,李四剩余生命:23.0"));
     }
 
     @Test

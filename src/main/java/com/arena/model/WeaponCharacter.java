@@ -6,7 +6,7 @@ package com.arena.model;
 public interface WeaponCharacter {
     public String getStatusDescrib();
     public String characterAttack(Player player);
-
+    public String shouldInjuredPersonLike(Player player);
     public int getRoundTimes();
     public void setRoundTimes(int roundTimes);
 

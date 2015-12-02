@@ -33,6 +33,6 @@ public class Status {
     }
 
     public String getDescrib() {
-        return weaponCharacter.getStatusDescrib()+"了";
+        return weaponCharacter.getStatusDescrib();
     }
 }

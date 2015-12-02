@@ -43,13 +43,9 @@ public abstract class Player {
         return blood;
     }
 
-    public String attack(Player atkedPlayer) {
-        if (status != null) {
-            return status.getWeaponCharacter().characterAttack(this) + "\n" + String.format("%s攻击了%s", name, atkedPlayer.getName());
-        } else {
-            return String.format("%s攻击了%s", name, atkedPlayer.getName());
-        }
-    }
+    public abstract String attack(Player atkedPlayer);
+
+
 
     public boolean isAlive() {
         return blood > 0;
