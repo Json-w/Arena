@@ -24,12 +24,14 @@ public class OrdinaryPerson extends Player {
     public String attack(Player atkedPlayer) {
         String result = "";
         if (status != null) {
-            String characterAttackResult =  status.getWeaponCharacter().characterAttack(this);
-            if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候
-                return status.getWeaponCharacter().shouldInjuredPersonLike(this);
-            } else {
-                if(!characterAttackResult.equals("")){
-                    result += characterAttackResult+ "\n";
+            String characterAttackResult = status.getWeaponCharacter().characterAttack(this);
+            if (status != null) {
+                if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候
+                    return status.getWeaponCharacter().shouldInjuredPersonLike(this);
+                } else {
+                    if (!characterAttackResult.equals("")) {
+                        result += characterAttackResult + "\n";
+                    }
                 }
             }
         }
@@ -46,16 +48,18 @@ public class OrdinaryPerson extends Player {
         double atkedBlood = 0;
         atkedBlood = (player.getAttack().getNormalAtk());
         if (player.getAttack().getWeaponCharacter() != null) {
-            setStatus(new Status(player.getAttack().getWeaponCharacter()));
-            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
-                atkedBlood = atkedBlood *3;
+            if (player.getAttack().getWeaponCharacter().ifCharacterEffecitve()) {//判断武器是否生效
+                setStatus(new Status(player.getAttack().getWeaponCharacter()));
+            }
+            if (player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter) {
+                atkedBlood = atkedBlood * 3;
             }
         }
-        blood -=atkedBlood;
+        blood -= atkedBlood;
 
         if (status != null) {
-            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
-                return String.format(",%s,%s受到了%s点伤害,%s剩余生命:%s", player.getName() + status.getDescrib(),name, atkedBlood, name, blood);
+            if (player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter) {
+                return String.format(",%s,%s受到了%s点伤害,%s剩余生命:%s", player.getName() + status.getDescrib(), name, atkedBlood, name, blood);
             }
             return String.format(",%s受到了%s点伤害,%s,%s剩余生命:%s", name, atkedBlood, name + status.getDescrib(), name, blood);
         }

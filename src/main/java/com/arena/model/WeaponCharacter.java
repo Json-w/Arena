@@ -9,6 +9,6 @@ public interface WeaponCharacter {
     public String shouldInjuredPersonLike(Player player);
     public int getRoundTimes();
     public void setRoundTimes(int roundTimes);
-
     public boolean ifAttack();
+    public boolean ifCharacterEffecitve();
 }

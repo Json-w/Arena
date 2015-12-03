@@ -3,7 +3,7 @@ package com.arena.model;
 /**
  * Created by jason on 15-12-1.
  */
-public class FireWeaponCharactor implements WeaponCharacter {
+public class FireWeaponCharactor extends AbstractWeaponCharacter {
     private double characterAtk;
 
     public FireWeaponCharactor(double characterAtk) {

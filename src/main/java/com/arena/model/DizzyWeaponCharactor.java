@@ -3,7 +3,7 @@ package com.arena.model;
 /**
  * Created by jason on 15-12-1.
  */
-public class DizzyWeaponCharactor implements WeaponCharacter {
+public class DizzyWeaponCharactor extends AbstractWeaponCharacter {
     private int roundTimes;
     public DizzyWeaponCharactor(int roundTimes) {
         this.roundTimes = roundTimes;

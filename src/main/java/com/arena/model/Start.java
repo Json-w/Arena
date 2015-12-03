@@ -16,14 +16,14 @@ public class Start {
 //        arena.start();
 
           Arena arena;
-//        Warrior warrior = new Warrior("张三", 8, 20);
-//        Weapon weapon = new Weapon("晕锤",3);
-//        weapon.setWeaponCharacter(new DizzyWeaponCharactor());
-//        warrior.setWeapon(weapon);
-//        OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
-//        arena = new Arena(warrior,ordinaryPerson);
-//        arena.setPrinter(new Printer());
-//        arena.start();
+          Warrior warrior = new Warrior("张三", 8, 20);
+          Weapon weapon = new Weapon("晕锤",3);
+          weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+          warrior.setWeapon(weapon);
+          OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,50);
+          arena = new Arena(warrior,ordinaryPerson);
+          arena.setPrinter(new Printer());
+          arena.start();
 
 //        Warrior warrior = new Warrior("张三", 8, 20);
 //        Weapon weapon = new Weapon("冰剑",3);
@@ -59,14 +59,14 @@ public class Start {
 //        arena.setPrinter(new Printer());
 //        arena.start();
 
-        Warrior warrior = new Warrior("张三", 8, 20);
-        Weapon weapon = new Weapon("冰剑",3);
-        weapon.setWeaponCharacter(new FreezeWeaponCharactor());
-        warrior.setWeapon(weapon);
-        OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
-        arena = new Arena(warrior,ordinaryPerson);
-        arena.setPrinter(new Printer());
-
-        arena.start();
+//        Warrior warrior = new Warrior("张三", 8, 20);
+//        Weapon weapon = new Weapon("冰剑",3);
+//        weapon.setWeaponCharacter(new FreezeWeaponCharactor());
+//        warrior.setWeapon(weapon);
+//        OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
+//        arena = new Arena(warrior,ordinaryPerson);
+//        arena.setPrinter(new Printer());
+//
+//        arena.start();
     }
 }

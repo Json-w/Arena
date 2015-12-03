@@ -3,7 +3,7 @@ package com.arena.model;
 /**
  * Created by jason on 15-12-1.
  */
-public class FreezeWeaponCharactor implements WeaponCharacter {
+public class FreezeWeaponCharactor extends AbstractWeaponCharacter {
     private int roundTimes;
 
     public FreezeWeaponCharactor(int roundTimes) {

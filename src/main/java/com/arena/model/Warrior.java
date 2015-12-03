@@ -29,13 +29,16 @@ public class Warrior extends Player {
         String result = "";
         if (status != null) {
             String characterAttackResult =  status.getWeaponCharacter().characterAttack(this);
-            if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候 输出玩家的状态
-                return status.getWeaponCharacter().shouldInjuredPersonLike(this);
-            } else {
-                if(!characterAttackResult.equals("")){
-                    result += characterAttackResult+ "\n";
+            if(status != null){
+                if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候 输出玩家的状态
+                    return status.getWeaponCharacter().shouldInjuredPersonLike(this);
+                } else {
+                    if(!characterAttackResult.equals("")){
+                        result += characterAttackResult+ "\n";
+                    }
                 }
             }
+
         }
         if ("".equals(weapon.getName())) {
             result += String.format("%s%s攻击了%s%s", roleName, name, atkedPlayer.getRoleName(), atkedPlayer.getName()) + atkedPlayer.beAttacked(this);
@@ -65,7 +68,9 @@ public class Warrior extends Player {
         double atkedBlood = 0;
         atkedBlood = (player.getAttack().getNormalAtk() - defense.getAc());
         if (player.getAttack().getWeaponCharacter() != null) {
-            setStatus(new Status(player.getAttack().getWeaponCharacter()));
+            if(player.getAttack().getWeaponCharacter().ifCharacterEffecitve()) {//判断武器是否生效
+                setStatus(new Status(player.getAttack().getWeaponCharacter()));
+            }
             if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
                 atkedBlood = atkedBlood *3;
             }

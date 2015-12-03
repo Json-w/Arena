@@ -6,9 +6,13 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by jason on 15-11-28.
@@ -18,6 +22,8 @@ public class ArenaTest {
 
     @Mock
     private Printer printer;
+    @Mock
+    private Random random;
 
     private Player playerA;
     private Player playerB;
@@ -57,7 +63,10 @@ public class ArenaTest {
     public void test_warrior_with_posionous_sword_fight_with_ordinaryPerson(){
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("优质毒剑",3);
-        weapon.setWeaponCharacter(new PoisonousWeaponCharacter(2));
+        AbstractWeaponCharacter poisonousWeaponCharacter = new PoisonousWeaponCharacter(2);
+        poisonousWeaponCharacter.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9);
+        weapon.setWeaponCharacter(poisonousWeaponCharacter);
         warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
@@ -76,7 +85,10 @@ public class ArenaTest {
     public void test_warrior_with_dizzy_hammer_fight_with_ordinaryPerson(){
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("晕锤",3);
-        weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+        AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
+        dizzyWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9);
+        weapon.setWeaponCharacter(dizzyWeaponChar);
         warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
@@ -95,7 +107,10 @@ public class ArenaTest {
     public void test_warrior_with_fire_sword_fight_with_ordinaryPerson(){
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("火剑",3);
-        weapon.setWeaponCharacter(new FireWeaponCharactor(2));
+        AbstractWeaponCharacter fireWeaponChar = new FireWeaponCharactor(2);
+        fireWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9);
+        weapon.setWeaponCharacter(fireWeaponChar);
         warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
@@ -114,7 +129,10 @@ public class ArenaTest {
     public void test_warrior_with_freeze_sword_fight_with_ordinaryPerson(){
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("冰剑",3);
-        weapon.setWeaponCharacter(new FreezeWeaponCharactor());
+        AbstractWeaponCharacter freezrWeaponChar = new FreezeWeaponCharactor();
+        freezrWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9);
+        weapon.setWeaponCharacter(freezrWeaponChar);
         warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
@@ -133,7 +151,10 @@ public class ArenaTest {
     public void test_warrior_with_full_strength_sword_fight_with_ordinaryPerson(){
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("利剑",3);
-        weapon.setWeaponCharacter(new FullStrengthWeaponCharacter());
+        AbstractWeaponCharacter fullStrengthWeaponChar = new FullStrengthWeaponCharacter();
+        fullStrengthWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9);
+        weapon.setWeaponCharacter(fullStrengthWeaponChar);
         warrior.setWeapon(weapon);
         OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,18);
         arena = new Arena(warrior,ordinaryPerson);
@@ -150,11 +171,16 @@ public class ArenaTest {
     public void test_warrior_with_dizzy_hammer_fight_with_warrior_who_has_poisonous_sword_more_round_times(){
         Warrior hammerWarrior = new Warrior("张三", 8, 40);
         Weapon weapon = new Weapon("晕锤",4);
-        weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+        AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
+        dizzyWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9,9);
+        weapon.setWeaponCharacter(dizzyWeaponChar);
         hammerWarrior.setWeapon(weapon);
         Warrior swordWarrior = new Warrior("李四",3,35);
         Weapon sword = new Weapon("毒剑",5);
-        sword.setWeaponCharacter(new PoisonousWeaponCharacter(2));
+        AbstractWeaponCharacter poisonousWeaponChar = new PoisonousWeaponCharacter(2);
+        poisonousWeaponChar.setRandom(random);
+        sword.setWeaponCharacter(poisonousWeaponChar);
         swordWarrior.setWeapon(sword);
         arena = new Arena(hammerWarrior,swordWarrior);
         InOrder inOrder = inOrder(printer);
@@ -174,11 +200,16 @@ public class ArenaTest {
     public void test_warrior_with_posidonous_sword_fight_with_warrior_who_has_dizzy_hammer_more_round_times(){
         Warrior hammerWarrior = new Warrior("张三", 8, 40);
         Weapon weapon = new Weapon("晕锤",4);
-        weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+        AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
+        dizzyWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9,9);
+        weapon.setWeaponCharacter(dizzyWeaponChar);
         hammerWarrior.setWeapon(weapon);
         Warrior swordWarrior = new Warrior("李四",3,35);
         Weapon sword = new Weapon("毒剑",5);
-        sword.setWeaponCharacter(new PoisonousWeaponCharacter(2));
+        AbstractWeaponCharacter poisonousWeaponChar = new PoisonousWeaponCharacter(2);
+        poisonousWeaponChar.setRandom(random);
+        sword.setWeaponCharacter(poisonousWeaponChar);
         swordWarrior.setWeapon(sword);
         arena = new Arena(swordWarrior,hammerWarrior);
         InOrder inOrder = inOrder(printer);
@@ -198,11 +229,16 @@ public class ArenaTest {
     public void test_warrior_with_fullStrength_sword_fight_with_warrior_who_has_freeze_sword_more_round_times(){
         Warrior fullStrengthWarrior = new Warrior("张三", 8, 30);
         Weapon fullStrengthWeapon = new Weapon("利剑",3);
-        fullStrengthWeapon.setWeaponCharacter(new FullStrengthWeaponCharacter());
+        AbstractWeaponCharacter fullStrengthWeaponChar = new FullStrengthWeaponCharacter();
+        fullStrengthWeaponChar.setRandom(random);
+        when(random.nextInt(anyInt())).thenReturn(9,9);
+        fullStrengthWeapon.setWeaponCharacter(fullStrengthWeaponChar);
         fullStrengthWarrior.setWeapon(fullStrengthWeapon);
         Warrior freezeWarrior = new Warrior("李四",3,68);
         Weapon weapon = new Weapon("冰剑",2);
-        weapon.setWeaponCharacter(new FreezeWeaponCharactor());
+        AbstractWeaponCharacter freezeWeaponChar = new FreezeWeaponCharactor();
+        freezeWeaponChar.setRandom(random);
+        weapon.setWeaponCharacter(freezeWeaponChar);
         freezeWarrior.setWeapon(weapon);
         arena = new Arena(fullStrengthWarrior,freezeWarrior);
         InOrder inOrder = inOrder(printer);

@@ -3,7 +3,7 @@ package com.arena.model;
 /**
  * Created by jason on 15-12-2.
  */
-public class FullStrengthWeaponCharacter implements WeaponCharacter{
+public class FullStrengthWeaponCharacter extends AbstractWeaponCharacter{
 
     @Override
     public String getStatusDescrib() {
