@@ -1,5 +1,7 @@
 package com.arena.model;
 
+import com.arena.model.player.OrdinaryPerson;
+import com.arena.model.player.Player;
 import org.junit.Assert;
 import org.junit.Test;
 

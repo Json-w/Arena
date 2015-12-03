@@ -1,5 +1,6 @@
-package com.arena.model;
+package com.arena.model.equipment;
 
+import com.arena.model.player.Player;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

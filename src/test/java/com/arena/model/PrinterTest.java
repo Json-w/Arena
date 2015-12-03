@@ -1,5 +1,6 @@
 package com.arena.model;
 
+import com.arena.model.common.Printer;
 import org.junit.Before;
 import org.junit.Test;
 

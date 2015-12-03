@@ -1,14 +1,16 @@
 package com.arena.model;
 
+import com.arena.model.common.Printer;
+import com.arena.model.equipment.Defense;
+import com.arena.model.equipment.Weapon;
+import com.arena.model.player.Warrior;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.inOrder;
 
 /**
  * Created by jason on 15-11-29.

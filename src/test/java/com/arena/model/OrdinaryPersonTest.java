@@ -1,5 +1,9 @@
 package com.arena.model;
 
+import com.arena.model.equipment.NoDefense;
+import com.arena.model.equipment.Weapon;
+import com.arena.model.player.OrdinaryPerson;
+import com.arena.model.player.Warrior;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

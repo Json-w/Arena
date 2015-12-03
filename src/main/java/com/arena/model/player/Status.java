@@ -1,4 +1,6 @@
-package com.arena.model;
+package com.arena.model.player;
+
+import com.arena.model.equipment.WeaponCharacter;
 
 /**
  * Created by jason on 15-11-30.

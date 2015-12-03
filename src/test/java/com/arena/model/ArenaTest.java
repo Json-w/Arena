@@ -1,5 +1,10 @@
 package com.arena.model;
 
+import com.arena.model.common.Printer;
+import com.arena.model.equipment.*;
+import com.arena.model.player.OrdinaryPerson;
+import com.arena.model.player.Player;
+import com.arena.model.player.Warrior;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;

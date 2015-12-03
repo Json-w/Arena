@@ -1,9 +1,12 @@
-package com.arena.model;
+package com.arena.model.equipment;
+
+import com.arena.model.equipment.AbstractWeaponCharacter;
+import com.arena.model.player.Player;
 
 /**
  * Created by jason on 15-12-2.
  */
-public class FullStrengthWeaponCharacter extends AbstractWeaponCharacter{
+public class FullStrengthWeaponCharacter extends AbstractWeaponCharacter {
 
     @Override
     public String getStatusDescrib() {

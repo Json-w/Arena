@@ -1,4 +1,4 @@
-package com.arena.model;
+package com.arena.model.equipment;
 
 /**
  * Created by jason on 15-11-29.
@@ -7,10 +7,17 @@ public class Weapon {
     private String name;
     private double additionATK;
     private WeaponCharacter weaponCharacter;
-
+    private WeaponSize weaponSize;
     public Weapon(String name,double additionATK) {
         this.additionATK = additionATK;
         this.name = name;
+    }
+
+    public Weapon(String name, double additionATK, WeaponCharacter weaponCharacter, WeaponSize weaponSize) {
+        this.name = name;
+        this.additionATK = additionATK;
+        this.weaponCharacter = weaponCharacter;
+        this.weaponSize = weaponSize;
     }
 
     public double getAdditionATK() {
@@ -35,5 +42,13 @@ public class Weapon {
 
     public void setWeaponCharacter(WeaponCharacter weaponCharacter) {
         this.weaponCharacter = weaponCharacter;
+    }
+
+    public WeaponSize getWeaponSize() {
+        return weaponSize;
+    }
+
+    public void setWeaponSize(WeaponSize weaponSize) {
+        this.weaponSize = weaponSize;
     }
 }

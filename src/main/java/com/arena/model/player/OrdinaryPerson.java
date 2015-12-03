@@ -1,4 +1,7 @@
-package com.arena.model;
+package com.arena.model.player;
+
+import com.arena.model.equipment.Attack;
+import com.arena.model.equipment.FullStrengthWeaponCharacter;
 
 /**
  * Created by jason on 15-11-29.

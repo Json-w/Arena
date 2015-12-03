@@ -1,4 +1,4 @@
-package com.arena.model;
+package com.arena.model.equipment;
 
 import java.util.Random;
 

@@ -1,4 +1,6 @@
-package com.arena.model;
+package com.arena.model.equipment;
+
+import com.arena.model.equipment.Defense;
 
 /**
  * Created by jason on 15-11-30.

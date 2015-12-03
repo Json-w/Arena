@@ -1,12 +1,14 @@
-package com.arena.model;
+package com.arena.model.player;
+
+import com.arena.model.equipment.*;
 
 /**
  * Created by jason on 15-11-29.
  */
 public class Warrior extends Player {
-    private String roleName = "战士";
-    private Weapon weapon;
-    private Defense defense;
+    protected String roleName = "战士";
+    protected Weapon weapon;
+    protected Defense defense;
 
     public Warrior(String name, double atk, double blood, Weapon woodWeapon, Defense woodDefense) {
         super(name, atk, blood);
@@ -98,6 +100,7 @@ public class Warrior extends Player {
     }
 
     public void setWeapon(Weapon weapon) {
+
         this.weapon = weapon;
     }
 }

@@ -1,33 +1,36 @@
-package com.arena.model;
+package com.arena.model.equipment;
+
+import com.arena.model.equipment.AbstractWeaponCharacter;
+import com.arena.model.player.Player;
 
 /**
  * Created by jason on 15-12-1.
  */
-public class FreezeWeaponCharactor extends AbstractWeaponCharacter {
+public class DizzyWeaponCharactor extends AbstractWeaponCharacter {
     private int roundTimes;
-
-    public FreezeWeaponCharactor(int roundTimes) {
+    public DizzyWeaponCharactor(int roundTimes) {
         this.roundTimes = roundTimes;
     }
 
-    public FreezeWeaponCharactor() {
+    public DizzyWeaponCharactor() {
         roundTimes = 0;
     }
 
     @Override
     public String getStatusDescrib() {
-        return "冰冻了";
+        return "晕倒了";
     }
 
     @Override
     public String characterAttack(Player player) {
-        roundTimes ++;
+        roundTimes +=2;
         return "";
     }
 
     @Override
     public String shouldInjuredPersonLike(Player player) {
-        return String.format("%s冰冻了,无法攻击",player.getName());
+        roundTimes--;
+        return String.format("%s晕倒了,无法攻击,眩晕还剩:%s轮",player.getName(), roundTimes);
     }
 
     @Override
@@ -42,9 +45,9 @@ public class FreezeWeaponCharactor extends AbstractWeaponCharacter {
 
     @Override
     public boolean ifAttack() {
-        if(roundTimes%2 > 0){
-            return  false;
-        }else {
+        if (roundTimes > 0) {
+            return false;
+        } else {
             return true;
         }
     }

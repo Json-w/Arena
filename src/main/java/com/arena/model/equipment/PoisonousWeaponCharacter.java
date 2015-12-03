@@ -1,24 +1,27 @@
-package com.arena.model;
+package com.arena.model.equipment;
+
+import com.arena.model.equipment.AbstractWeaponCharacter;
+import com.arena.model.player.Player;
 
 /**
- * Created by jason on 15-12-1.
+ * Created by jason on 15-11-30.
  */
-public class FireWeaponCharactor extends AbstractWeaponCharacter {
+public class PoisonousWeaponCharacter extends AbstractWeaponCharacter {
     private double characterAtk;
 
-    public FireWeaponCharactor(double characterAtk) {
+    public PoisonousWeaponCharacter(double characterAtk) {
         this.characterAtk = characterAtk;
     }
 
     @Override
     public String getStatusDescrib() {
-        return "燃烧了";
+        return "中毒了";
     }
 
     @Override
     public String characterAttack(Player player) {
-        player.setBlood(player.getBlood() - characterAtk);
-        return String.format("%s受到%s点燃烧伤害,%s剩余生命:%s", player.getName(), characterAtk,player.getName(),player.getBlood());
+        player.setBlood(player.getBlood()-characterAtk);
+        return String.format("%s受到%s点毒性伤害,李四剩余生命:%s",player.getName(),characterAtk,player.getBlood());
     }
 
     @Override
@@ -40,4 +43,5 @@ public class FireWeaponCharactor extends AbstractWeaponCharacter {
     public boolean ifAttack() {
         return true;
     }
+
 }
