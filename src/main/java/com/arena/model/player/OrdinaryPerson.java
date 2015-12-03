@@ -52,7 +52,16 @@ public class OrdinaryPerson extends Player {
         atkedBlood = (player.getAttack().getNormalAtk());
         if (player.getAttack().getWeaponCharacter() != null) {
             if (player.getAttack().getWeaponCharacter().ifCharacterEffecitve()) {//判断武器是否生效
-                setStatus(new Status(player.getAttack().getWeaponCharacter()));
+                if(player instanceof  Warrior) {
+                    Warrior warrior = (Warrior) player;
+                    if (warrior.getWeapon().getWeaponSize() == null) {
+                        setStatus(new Status(player.getAttack().getWeaponCharacter()));
+                    } else {
+                        if (warrior.getWeapon().getWeaponSize().ifPlayerCanUseCharactor(player)) {//判断武器在player手中是否有特效
+                            setStatus(new Status(player.getAttack().getWeaponCharacter()));
+                        }
+                    }
+                }
             }
             if (player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter) {
                 atkedBlood = atkedBlood * 3;

@@ -1,8 +1,10 @@
 package com.arena.model;
 
 import com.arena.model.common.Printer;
-import com.arena.model.equipment.DizzyWeaponCharactor;
-import com.arena.model.equipment.Weapon;
+import com.arena.model.equipment.*;
+import com.arena.model.exception.CanNotAssembleException;
+import com.arena.model.player.Assassin;
+import com.arena.model.player.Knight;
 import com.arena.model.player.OrdinaryPerson;
 import com.arena.model.player.Warrior;
 
@@ -10,7 +12,7 @@ import com.arena.model.player.Warrior;
  * Created by jason on 15-11-28.
  */
 public class Start {
-    public static void main(String[] args){
+    public static void main(String[] args) throws CanNotAssembleException {
 //        Arena arena;
 //        Warrior warrior = new Warrior("张三", 8, 20);
 //        Weapon weapon = new Weapon("优质毒剑",3);
@@ -21,15 +23,15 @@ public class Start {
 //        arena.setPrinter(new Printer());
 //        arena.start();
 
-          Arena arena;
-          Warrior warrior = new Warrior("张三", 8, 20);
-          Weapon weapon = new Weapon("晕锤",3);
-          weapon.setWeaponCharacter(new DizzyWeaponCharactor());
-          warrior.setWeapon(weapon);
-          OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,50);
-          arena = new Arena(warrior,ordinaryPerson);
-          arena.setPrinter(new Printer());
-          arena.start();
+//          Arena arena;
+//          Warrior warrior = new Warrior("张三", 8, 20);
+//          Weapon weapon = new Weapon("晕锤",3);
+//          weapon.setWeaponCharacter(new DizzyWeaponCharactor());
+//          warrior.setWeapon(weapon);
+//          OrdinaryPerson ordinaryPerson = new OrdinaryPerson("李四",3,50);
+//          arena = new Arena(warrior,ordinaryPerson);
+//          arena.setPrinter(new Printer());
+//          arena.start();
 
 //        Warrior warrior = new Warrior("张三", 8, 20);
 //        Weapon weapon = new Weapon("冰剑",3);
@@ -74,5 +76,18 @@ public class Start {
 //        arena.setPrinter(new Printer());
 //
 //        arena.start();
+
+          Arena arena;
+          Assassin assassin = new Assassin("张三",8,20);
+          Weapon weapon = new Weapon("冰雪峨嵋刺",2);
+          AbstractWeaponCharacter weaponCharacter = new FreezeWeaponCharactor();
+          weapon.setWeaponCharacter(weaponCharacter);
+          weapon.setWeaponSize(new ShortWeaponSize());
+          assassin.setWeapon(weapon);
+          Knight knight = new Knight("李四",6,20);
+          arena = new Arena(assassin,knight);
+          arena.setPrinter(new Printer());
+          arena.start();
+
     }
 }

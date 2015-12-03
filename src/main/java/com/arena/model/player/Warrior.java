@@ -1,6 +1,7 @@
 package com.arena.model.player;
 
 import com.arena.model.equipment.*;
+import com.arena.model.exception.CanNotAssembleException;
 
 /**
  * Created by jason on 15-11-29.
@@ -30,13 +31,13 @@ public class Warrior extends Player {
     public String attack(Player atkedPlayer) {
         String result = "";
         if (status != null) {
-            String characterAttackResult =  status.getWeaponCharacter().characterAttack(this);
-            if(status != null){
+            String characterAttackResult = status.getWeaponCharacter().characterAttack(this);
+            if (status != null) {
                 if (!status.getWeaponCharacter().ifAttack()) {//玩家不能攻击的时候 输出玩家的状态
                     return status.getWeaponCharacter().shouldInjuredPersonLike(this);
                 } else {
-                    if(!characterAttackResult.equals("")){
-                        result += characterAttackResult+ "\n";
+                    if (!characterAttackResult.equals("")) {
+                        result += characterAttackResult + "\n";
                     }
                 }
             }
@@ -70,17 +71,26 @@ public class Warrior extends Player {
         double atkedBlood = 0;
         atkedBlood = (player.getAttack().getNormalAtk() - defense.getAc());
         if (player.getAttack().getWeaponCharacter() != null) {
-            if(player.getAttack().getWeaponCharacter().ifCharacterEffecitve()) {//判断武器是否生效
-                setStatus(new Status(player.getAttack().getWeaponCharacter()));
+            if (player.getAttack().getWeaponCharacter().ifCharacterEffecitve()) {//判断武器是否生效
+                if (player instanceof Warrior) {
+                    Warrior warrior = (Warrior) player;
+                    if (warrior.getWeapon().getWeaponSize() == null) {
+                        setStatus(new Status(player.getAttack().getWeaponCharacter()));
+                    } else {
+                        if (warrior.getWeapon().getWeaponSize().ifPlayerCanUseCharactor(player)) {//判断武器在player手中是否有特效
+                            setStatus(new Status(player.getAttack().getWeaponCharacter()));
+                        }
+                    }
+                }
             }
-            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
-                atkedBlood = atkedBlood *3;
+            if (player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter) {
+                atkedBlood = atkedBlood * 3;
             }
         }
-        blood -=atkedBlood;
+        blood -= atkedBlood;
         if (status != null) {
-            if(player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter){
-                return String.format(",%s,%s受到了%s点伤害,%s剩余生命:%s", player.getName() + status.getDescrib(),name, atkedBlood, name, blood);
+            if (player.getAttack().getWeaponCharacter() instanceof FullStrengthWeaponCharacter) {
+                return String.format(",%s,%s受到了%s点伤害,%s剩余生命:%s", player.getName() + status.getDescrib(), name, atkedBlood, name, blood);
             }
             return String.format(",%s受到了%s点伤害,%s,%s剩余生命:%s", name, atkedBlood, name + status.getDescrib(), name, blood);
         }
@@ -99,8 +109,10 @@ public class Warrior extends Player {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) {
-
+    public void setWeapon(Weapon weapon) throws CanNotAssembleException {
+        if(weapon.getWeaponSize()!=null){
+            weapon.getWeaponSize().ifPlayerCanAssemble(this);
+        }
         this.weapon = weapon;
     }
 }

@@ -3,6 +3,7 @@ package com.arena.model;
 import com.arena.model.common.Printer;
 import com.arena.model.equipment.Defense;
 import com.arena.model.equipment.Weapon;
+import com.arena.model.exception.CanNotAssembleException;
 import com.arena.model.player.Warrior;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +40,7 @@ public class WarriorTest {
     }
 
     @Test
-    public void test_warrior_with_weapon_and_defense_should_return_right_info() {
+    public void test_warrior_with_weapon_and_defense_should_return_right_info() throws CanNotAssembleException {
         Warrior warriorA = new Warrior("王五", 12, 38);
         Warrior warriorB = new Warrior("李四", 10, 40);
         warriorA.setWeapon(new Weapon("屠龙刀", 5));

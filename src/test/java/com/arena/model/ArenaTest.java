@@ -2,9 +2,8 @@ package com.arena.model;
 
 import com.arena.model.common.Printer;
 import com.arena.model.equipment.*;
-import com.arena.model.player.OrdinaryPerson;
-import com.arena.model.player.Player;
-import com.arena.model.player.Warrior;
+import com.arena.model.exception.CanNotAssembleException;
+import com.arena.model.player.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -65,7 +64,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_posionous_sword_fight_with_ordinaryPerson(){
+    public void test_warrior_with_posionous_sword_fight_with_ordinaryPerson() throws CanNotAssembleException {
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("优质毒剑",3);
         AbstractWeaponCharacter poisonousWeaponCharacter = new PoisonousWeaponCharacter(2);
@@ -87,7 +86,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_dizzy_hammer_fight_with_ordinaryPerson(){
+    public void test_warrior_with_dizzy_hammer_fight_with_ordinaryPerson() throws CanNotAssembleException {
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("晕锤",3);
         AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
@@ -109,7 +108,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_fire_sword_fight_with_ordinaryPerson(){
+    public void test_warrior_with_fire_sword_fight_with_ordinaryPerson() throws CanNotAssembleException {
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("火剑",3);
         AbstractWeaponCharacter fireWeaponChar = new FireWeaponCharactor(2);
@@ -131,7 +130,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_freeze_sword_fight_with_ordinaryPerson(){
+    public void test_warrior_with_freeze_sword_fight_with_ordinaryPerson() throws CanNotAssembleException {
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("冰剑",3);
         AbstractWeaponCharacter freezrWeaponChar = new FreezeWeaponCharactor();
@@ -153,7 +152,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_full_strength_sword_fight_with_ordinaryPerson(){
+    public void test_warrior_with_full_strength_sword_fight_with_ordinaryPerson() throws CanNotAssembleException {
         Warrior warrior = new Warrior("张三", 8, 20);
         Weapon weapon = new Weapon("利剑",3);
         AbstractWeaponCharacter fullStrengthWeaponChar = new FullStrengthWeaponCharacter();
@@ -173,7 +172,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_dizzy_hammer_fight_with_warrior_who_has_poisonous_sword_more_round_times(){
+    public void test_warrior_with_dizzy_hammer_fight_with_warrior_who_has_poisonous_sword_more_round_times() throws CanNotAssembleException {
         Warrior hammerWarrior = new Warrior("张三", 8, 40);
         Weapon weapon = new Weapon("晕锤",4);
         AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
@@ -202,7 +201,7 @@ public class ArenaTest {
     }
 
     @Test
-    public void test_warrior_with_posidonous_sword_fight_with_warrior_who_has_dizzy_hammer_more_round_times(){
+    public void test_warrior_with_posidonous_sword_fight_with_warrior_who_has_dizzy_hammer_more_round_times() throws CanNotAssembleException {
         Warrior hammerWarrior = new Warrior("张三", 8, 40);
         Weapon weapon = new Weapon("晕锤",4);
         AbstractWeaponCharacter dizzyWeaponChar = new DizzyWeaponCharactor();
@@ -231,7 +230,7 @@ public class ArenaTest {
         inOrder.verify(printer).printToConsol("李四被打败了");
     }
     @Test
-    public void test_warrior_with_fullStrength_sword_fight_with_warrior_who_has_freeze_sword_more_round_times(){
+    public void test_warrior_with_fullStrength_sword_fight_with_warrior_who_has_freeze_sword_more_round_times() throws CanNotAssembleException {
         Warrior fullStrengthWarrior = new Warrior("张三", 8, 30);
         Weapon fullStrengthWeapon = new Weapon("利剑",3);
         AbstractWeaponCharacter fullStrengthWeaponChar = new FullStrengthWeaponCharacter();
@@ -263,4 +262,43 @@ public class ArenaTest {
         inOrder.verify(printer).printToConsol("李四被打败了");
     }
 
+    @Test
+    public void test_Assassin_use_short_weapon_fight_with_knight_who_has_no_weapon() throws CanNotAssembleException {
+        Assassin assassin = new Assassin("张三",8,20);
+        Weapon weapon = new Weapon("冰雪峨嵋刺",2);
+        AbstractWeaponCharacter weaponCharacter = new FreezeWeaponCharactor();
+        weaponCharacter.setRandom(random);
+        weapon.setWeaponCharacter(weaponCharacter);
+        when(random.nextInt(anyInt())).thenReturn(9,8);
+        weapon.setWeaponSize(new ShortWeaponSize());
+        assassin.setWeapon(weapon);
+        Knight knight = new Knight("李四",6,20);
+        arena = new Arena(assassin,knight);
+        InOrder inOrder = inOrder(printer);
+        arena.setPrinter(printer);
+
+        arena.start();
+
+        inOrder.verify(printer).printToConsol("刺客张三用冰雪峨嵋刺攻击了骑士李四,李四受到了10.0点伤害,李四冰冻了,李四剩余生命:10.0");
+        inOrder.verify(printer).printToConsol("李四冰冻了,无法攻击");
+        inOrder.verify(printer).printToConsol("刺客张三用冰雪峨嵋刺攻击了骑士李四,李四受到了10.0点伤害,李四冰冻了,李四剩余生命:0.0");
+        inOrder.verify(printer).printToConsol("李四被打败了");
+    }
+
+    @Test(expected = CanNotAssembleException.class)
+    public void test_warrior_use_short_weapon_fight_with_knight_who_has_no_weapon() throws CanNotAssembleException{
+        Warrior warrior = new Warrior("张三",8,20);
+        Weapon weapon = new Weapon("冰雪峨嵋刺",2);
+        AbstractWeaponCharacter weaponCharacter = new FreezeWeaponCharactor();
+        weaponCharacter.setRandom(random);
+        weapon.setWeaponCharacter(weaponCharacter);
+        when(random.nextInt(anyInt())).thenReturn(9,8);
+        weapon.setWeaponSize(new ShortWeaponSize());
+        warrior.setWeapon(weapon);
+        Knight knight = new Knight("李四",6,20);
+        arena = new Arena(warrior,knight);
+        arena.setPrinter(printer);
+
+        arena.start();
+    }
 }
