@@ -5,6 +5,7 @@ import com.arena.model.player.Player;
 
 /**
  * Created by jason on 15-12-1.
+ * 火焰特性
  */
 public class FireWeaponCharactor extends AbstractWeaponCharacter {
     private double characterAtk;
@@ -29,10 +30,6 @@ public class FireWeaponCharactor extends AbstractWeaponCharacter {
         return "";
     }
 
-    @Override
-    public int getRoundTimes() {
-        return 0;
-    }
 
     @Override
     public void setRoundTimes(int roundTimes) {

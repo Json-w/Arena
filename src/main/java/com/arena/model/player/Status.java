@@ -4,6 +4,8 @@ import com.arena.model.equipment.WeaponCharacter;
 
 /**
  * Created by jason on 15-11-30.
+ * 玩家状态
+ *
  */
 public class Status {
     private int roundTimes;

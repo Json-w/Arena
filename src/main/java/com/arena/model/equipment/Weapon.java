@@ -2,6 +2,7 @@ package com.arena.model.equipment;
 
 /**
  * Created by jason on 15-11-29.
+ * 武器
  */
 public class Weapon {
     private String name;

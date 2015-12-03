@@ -5,6 +5,7 @@ import com.arena.model.equipment.FullStrengthWeaponCharacter;
 
 /**
  * Created by jason on 15-11-29.
+ * 普通人
  */
 public class OrdinaryPerson extends Player {
     private String roleName = "普通人";

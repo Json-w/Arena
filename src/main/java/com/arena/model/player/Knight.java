@@ -2,6 +2,7 @@ package com.arena.model.player;
 
 /**
  * Created by adminstrator on 2015/12/3.
+ * 骑士
  */
 public class Knight extends Warrior {
     public Knight(String name, double atk, double blood) {

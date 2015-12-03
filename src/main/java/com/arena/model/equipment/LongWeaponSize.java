@@ -6,6 +6,7 @@ import com.arena.model.player.Player;
 
 /**
  * Created by adminstrator on 2015/12/3.
+ * 长武器
  */
 public class LongWeaponSize implements WeaponSize {
     @Override

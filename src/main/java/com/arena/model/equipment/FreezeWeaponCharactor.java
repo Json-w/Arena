@@ -5,6 +5,7 @@ import com.arena.model.player.Player;
 
 /**
  * Created by jason on 15-12-1.
+ * 冰冻特性
  */
 public class FreezeWeaponCharactor extends AbstractWeaponCharacter {
     private int roundTimes;
@@ -33,10 +34,6 @@ public class FreezeWeaponCharactor extends AbstractWeaponCharacter {
         return String.format("%s冰冻了,无法攻击",player.getName());
     }
 
-    @Override
-    public int getRoundTimes() {
-        return roundTimes;
-    }
 
     @Override
     public void setRoundTimes(int roundTimes) {

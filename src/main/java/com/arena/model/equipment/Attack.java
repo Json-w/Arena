@@ -2,6 +2,7 @@ package com.arena.model.equipment;
 
 /**
  * Created by jason on 15-12-1.
+ * 综合正常攻击和武器属性攻击
  */
 public class Attack {
     private double normalAtk;

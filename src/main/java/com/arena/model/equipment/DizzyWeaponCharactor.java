@@ -5,6 +5,7 @@ import com.arena.model.player.Player;
 
 /**
  * Created by jason on 15-12-1.
+ * 击晕特性
  */
 public class DizzyWeaponCharactor extends AbstractWeaponCharacter {
     private int roundTimes;
@@ -33,10 +34,6 @@ public class DizzyWeaponCharactor extends AbstractWeaponCharacter {
         return String.format("%s晕倒了,无法攻击,眩晕还剩:%s轮",player.getName(), roundTimes);
     }
 
-    @Override
-    public int getRoundTimes() {
-        return roundTimes;
-    }
 
     @Override
     public void setRoundTimes(int roundTimes) {

@@ -2,6 +2,7 @@ package com.arena.model.equipment;
 
 /**
  * Created by jason on 15-11-30.
+ * 防御类
  */
 public class Defense {
     private String name;

@@ -5,6 +5,7 @@ import com.arena.model.exception.CanNotAssembleException;
 
 /**
  * Created by jason on 15-11-29.
+ * 战士
  */
 public class Warrior extends Player {
     protected String roleName = "战士";
