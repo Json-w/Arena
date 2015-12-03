@@ -13,9 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by jason on 15-11-29.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class WarriorTest {
     @Mock

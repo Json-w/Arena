@@ -1,10 +1,8 @@
 package com.arena.model.equipment;
 
-import com.arena.model.equipment.AbstractWeaponCharacter;
 import com.arena.model.player.Player;
 
 /**
- * Created by jason on 15-11-30.
  * 毒性特性
  */
 public class PoisonousWeaponCharacter extends AbstractWeaponCharacter {

@@ -3,9 +3,6 @@ package com.arena.model;
 import com.arena.model.common.Printer;
 import com.arena.model.player.Player;
 
-/**
- * Created by jason on 15-11-28.
- */
 public class Arena {
     private Player playerA;
     private Player playerB;

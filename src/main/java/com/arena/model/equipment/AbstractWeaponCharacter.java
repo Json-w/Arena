@@ -3,7 +3,6 @@ package com.arena.model.equipment;
 import java.util.Random;
 
 /**
- * Created by adminstrator on 2015/12/3.
  * 实现 触发几率随机性
  */
 public abstract class AbstractWeaponCharacter implements WeaponCharacter {

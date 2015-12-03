@@ -9,9 +9,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by jason on 15-11-30.
- */
 public class OrdinaryPersonTest {
 
     @Test

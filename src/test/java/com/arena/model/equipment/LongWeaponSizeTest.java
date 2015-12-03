@@ -8,9 +8,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by adminstrator on 2015/12/3.
- */
 public class LongWeaponSizeTest {
     @Test(expected = CanNotAssembleException.class)
     public void test_assemble_long_weapon_to_assassin_should_throw_canNotAssembleException() throws CanNotAssembleException {

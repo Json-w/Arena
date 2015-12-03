@@ -12,9 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by adminstrator on 2015/12/3.
- */
+
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractWeaponCharacterTest {
     @Mock
@@ -36,11 +34,6 @@ public class AbstractWeaponCharacterTest {
             @Override
             public String shouldInjuredPersonLike(Player player) {
                 return null;
-            }
-
-            @Override
-            public int getRoundTimes() {
-                return 0;
             }
 
             @Override

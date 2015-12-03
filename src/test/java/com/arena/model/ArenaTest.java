@@ -18,9 +18,6 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by jason on 15-11-28.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class ArenaTest {
 

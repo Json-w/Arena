@@ -5,9 +5,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by jason on 15-12-2.
- */
 public class FreezeWeaponCharactorTest {
     @Test
     public void test_freezeWeaponCharactor_ifAttack_should_return_true(){

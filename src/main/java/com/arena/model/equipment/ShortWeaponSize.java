@@ -5,7 +5,6 @@ import com.arena.model.player.Assassin;
 import com.arena.model.player.Player;
 
 /**
- * Created by adminstrator on 2015/12/3.
  * 短兵器
  */
 public class ShortWeaponSize implements WeaponSize {

@@ -1,10 +1,8 @@
 package com.arena.model.equipment;
 
-import com.arena.model.equipment.AbstractWeaponCharacter;
 import com.arena.model.player.Player;
 
 /**
- * Created by jason on 15-12-1.
  * 火焰特性
  */
 public class FireWeaponCharactor extends AbstractWeaponCharacter {

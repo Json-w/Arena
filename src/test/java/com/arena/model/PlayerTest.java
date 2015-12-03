@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 
-/**
- * Created by jason on 15-11-28.
- */
 public class PlayerTest {
     @Test
     public void test_player_can_attack(){

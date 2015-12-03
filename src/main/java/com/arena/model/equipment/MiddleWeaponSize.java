@@ -4,7 +4,6 @@ import com.arena.model.player.Player;
 import com.arena.model.player.Warrior;
 
 /**
- * Created by adminstrator on 2015/12/3.
  * 中等长度武器
  */
 public class MiddleWeaponSize implements WeaponSize {
